@@ -41,6 +41,8 @@ class AcceptHeaderParsingHelperTest extends TestCase {
 
 	/**
 	 * @dataProvider dataProvider
+	 * @param string $header
+	 * @param array $expected
 	 */
 	public function testParseHeader($header, $expected) {
 		$this->assertEquals($expected, $this->dut->parseHeader($header));

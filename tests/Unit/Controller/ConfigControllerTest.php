@@ -112,6 +112,10 @@ class ConfigControllerTest extends TestCase {
 	/**
 	 * @dataProvider dataProviderConfig
 	 * @covers ::config
+	 * @param array $data
+	 * @param ?string $folderPath
+	 * @param ?int $interval
+	 * @param ?bool $printImage
 	 */
 	public function testConfig($data, $folderPath, $interval, $printImage): void {
 		$this->restParser->method('getParameters')->willReturn($data);

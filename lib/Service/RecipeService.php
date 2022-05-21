@@ -454,6 +454,7 @@ class RecipeService {
 
 	/**
 	 * @param string $html
+	 * @param string $url
 	 *
 	 * @return array
 	 */
@@ -1165,6 +1166,8 @@ class RecipeService {
 
 	/**
 	 * @param string $str
+	 * @param bool $preserve_newlines
+	 * @param bool $remove_slashes
 	 *
 	 * @return string
 	 */

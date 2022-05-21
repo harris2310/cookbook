@@ -60,6 +60,8 @@ class ThumbnailServiceTest extends TestCase {
 
 	/**
 	 * @dataProvider dpTypes
+	 * @param int $type
+	 * @param int $size
 	 */
 	public function testgetThumbnail($type, $size) {
 		/**
@@ -98,6 +100,7 @@ class ThumbnailServiceTest extends TestCase {
 
 	/**
 	 * @dataProvider dpInvalidTypes
+	 * @param int $type
 	 */
 	public function testGetThumbnailInvalidType($type) {
 		$this->expectException(InvalidThumbnailTypeException::class);

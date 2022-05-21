@@ -117,6 +117,7 @@ class MainController extends Controller {
 	/**
 	 * @NoAdminRequired
 	 * @NoCSRFRequired
+	 * @param string $query
 	 */
 	public function search($query) {
 		$this->dbCacheService->triggerCheck();
@@ -152,6 +153,7 @@ class MainController extends Controller {
 	/**
 	 * @NoAdminRequired
 	 * @NoCSRFRequired
+	 * @param string $category
 	 */
 	public function category($category) {
 		$this->dbCacheService->triggerCheck();
@@ -186,6 +188,7 @@ class MainController extends Controller {
 	/**
 	 * @NoAdminRequired
 	 * @NoCSRFRequired
+	 * @param string $category
 	 */
 	public function categoryUpdate($category) {
 		$this->dbCacheService->triggerCheck();
@@ -215,6 +218,7 @@ class MainController extends Controller {
 	/**
 	 * @NoAdminRequired
 	 * @NoCSRFRequired
+	 * @param string $keywords
 	 */
 	public function tags($keywords) {
 		$this->dbCacheService->triggerCheck();
@@ -299,6 +303,7 @@ class MainController extends Controller {
 	/**
 	 * @NoAdminRequired
 	 * @NoCSRFRequired
+	 * @param int $id
 	 */
 	public function update($id) {
 		$this->dbCacheService->triggerCheck();

@@ -53,11 +53,6 @@ class ThumbnailFileHelperTest extends TestCase {
 		$this->dut = new ThumbnailFileHelper($this->generationHelper, $this->fileHelper, $l);
 	}
 
-	public function dpExisting() {
-		yield [true];
-		yield [false];
-	}
-
 	public function dpFilename() {
 		yield [ImageSize::THUMBNAIL, 'thumb.jpg'];
 		yield [ImageSize::MINI_THUMBNAIL, 'thumb16.jpg'];
@@ -65,6 +60,8 @@ class ThumbnailFileHelperTest extends TestCase {
 
 	/**
 	 * @dataProvider dpFilename
+	 * @param int $type
+	 * @param string $filename
 	 */
 	public function testGetThumbnailWithExistingThumbnail($type, $filename) {
 		/**
@@ -81,6 +78,8 @@ class ThumbnailFileHelperTest extends TestCase {
 
 	/**
 	 * @dataProvider dpFilename
+	 * @param int $type
+	 * @param string $filename
 	 */
 	public function testGetThumbnailWithNonExistingThumbnail($type, $filename) {
 		/**
@@ -105,6 +104,8 @@ class ThumbnailFileHelperTest extends TestCase {
 
 	/**
 	 * @dataProvider dpFilename
+	 * @param int $type
+	 * @param string $filename
 	 */
 	public function testGetThumbnailWithNonExistingMainImage($type, $filename) {
 		/**
@@ -135,6 +136,8 @@ class ThumbnailFileHelperTest extends TestCase {
 
 	/**
 	 * @dataProvider dpDrop
+	 * @param bool $thumbExists
+	 * @param bool $miniExists
 	 */
 	public function testDropThumbnails($thumbExists, $miniExists) {
 		/**
@@ -170,6 +173,8 @@ class ThumbnailFileHelperTest extends TestCase {
 
 	/**
 	 * @dataProvider dpDrop
+	 * @param bool $thumbExists
+	 * @param bool $miniExists
 	 */
 	public function testRecreateThumbnails($thumbExists, $miniExists) {
 		/**
