@@ -23,7 +23,6 @@ use OCA\Cookbook\Exception\UserFolderNotWritableException;
  * @covers \OCA\Cookbook\Exception\UserFolderNotWritableException
  */
 class MainControllerTest extends TestCase {
-	
 	/**
 	 * @var MockObject|RecipeService
 	 */
@@ -104,7 +103,7 @@ class MainControllerTest extends TestCase {
 
 	public function testGetCategories(): void {
 		$this->ensureCacheCheckTriggered();
-		
+
 		$cat = ['Foo', 'Bar', 'Baz'];
 		$this->recipeService->expects($this->once())->method('getAllCategoriesInSearchIndex')->willReturn($cat);
 
@@ -115,7 +114,7 @@ class MainControllerTest extends TestCase {
 
 	public function testGetKeywords(): void {
 		$this->ensureCacheCheckTriggered();
-		
+
 		$kw = ['Foo', 'Bar', 'Baz'];
 		$this->recipeService->expects($this->once())->method('getAllKeywordsInSearchIndex')->willReturn($kw);
 
@@ -315,7 +314,7 @@ class MainControllerTest extends TestCase {
 		$this->ensureCacheCheckTriggered();
 
 		$this->recipeService->method('getRecipesByCategory')->with($cat)->willReturn($recipes);
-		
+
 		$expected = $this->getExpectedRecipes($recipes);
 
 		/**
@@ -381,7 +380,7 @@ class MainControllerTest extends TestCase {
 		$cat = 'My category';
 		$errorMsg = 'The error is found.';
 		$this->recipeService->method('getRecipesByCategory')->with($cat)->willThrowException(new Exception($errorMsg));
-		
+
 		/**
 		 * @var DataResponse $ret
 		 */
@@ -390,7 +389,7 @@ class MainControllerTest extends TestCase {
 		$this->assertEquals(500, $ret->getStatus());
 		$this->assertEquals($errorMsg, $ret->getData());
 	}
-	
+
 	/**
 	 * @dataProvider dataProviderTags
 	 */
@@ -398,7 +397,7 @@ class MainControllerTest extends TestCase {
 		$this->ensureCacheCheckTriggered();
 
 		$this->recipeService->method('getRecipesByKeywords')->with($keywords)->willReturn($recipes);
-		
+
 		$expected = $this->getExpectedRecipes($recipes);
 
 		/**
@@ -444,14 +443,14 @@ class MainControllerTest extends TestCase {
 			],
 		];
 	}
-	
+
 	public function testTagsFailed(): void {
 		$this->ensureCacheCheckTriggered();
 
 		$keywords = 'Tag 1,Tag B';
 		$errorMsg = 'The error is found.';
 		$this->recipeService->method('getRecipesByKeywords')->with($keywords)->willThrowException(new Exception($errorMsg));
-		
+
 		/**
 		 * @var DataResponse $ret
 		 */
@@ -498,7 +497,7 @@ class MainControllerTest extends TestCase {
 			],
 		];
 	}
-	
+
 	public function testSearchFailed(): void {
 		$this->ensureCacheCheckTriggered();
 
