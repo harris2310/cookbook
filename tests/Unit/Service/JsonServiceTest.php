@@ -6,6 +6,7 @@ use PHPUnit\Framework\TestCase;
 use OCA\Cookbook\Service\JsonService;
 
 class JsonServiceTest extends TestCase {
+	
 	/**
 	 * @var JsonService
 	 */
@@ -32,7 +33,7 @@ class JsonServiceTest extends TestCase {
 		];
 		$result = $this->service->isSchemaObject($testData);
 		self::assertFalse($result, 'The object must have a context');
-
+		
 		// Context must be in schema.org domain
 		$testData = [
 			"@context" => "https://schema.com/",
@@ -45,7 +46,7 @@ class JsonServiceTest extends TestCase {
 		];
 		$result = $this->service->isSchemaObject($testData);
 		self::assertFalse($result, 'The object must be in the correct context');
-
+		
 		// Objects must have a property @type
 		$testData = [
 			"@context" => "https://schema.org/",
@@ -57,7 +58,7 @@ class JsonServiceTest extends TestCase {
 		];
 		$result = $this->service->isSchemaObject($testData);
 		self::assertFalse($result, 'The object must have the property @type');
-
+		
 		// No typecheck will be requested
 		$testData = [
 			"@context" => "https://schema.org/",
@@ -104,7 +105,7 @@ class JsonServiceTest extends TestCase {
 		self::assertTrue($result, 'Property name was not found.');
 		$result = $this->service->hasProperty($testData, 'Bar');
 		self::assertFalse($result, 'Property Bar was falsely found.');
-
+		
 		$result = $this->service->hasProperty(['foo' => 'bar'], 'foo');
 		self::assertFalse($result, 'Property of a non-object must not be returned.');
 	}

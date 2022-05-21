@@ -6,6 +6,7 @@ use OCA\Cookbook\Helper\AcceptHeaderParsingHelper;
 use PHPUnit\Framework\TestCase;
 
 class AcceptHeaderParsingHelperTest extends TestCase {
+
 	/**
 	 * @var AcceptHeaderParsingHelper
 	 */

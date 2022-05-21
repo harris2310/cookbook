@@ -9,6 +9,7 @@ namespace OCA\Cookbook\Helper;
  * Higher priorities are sorted first in the array.
  */
 class AcceptHeaderParsingHelper {
+
 	/**
 	 * Parse the content of a header and generate the list of valid file extensions the client will accept.
 	 *

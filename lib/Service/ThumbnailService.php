@@ -14,6 +14,7 @@ use OCP\Image;
  * You need to store the images if they should be preserved.
  */
 class ThumbnailService {
+	
 	/**
 	 * @var IL10N
 	 */

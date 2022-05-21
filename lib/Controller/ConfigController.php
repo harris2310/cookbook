@@ -16,12 +16,12 @@ class ConfigController extends Controller {
 	 * @var RecipeService
 	 */
 	private $service;
-
+	
 	/**
 	 * @var DbCacheService
 	 */
 	private $dbCacheService;
-
+	
 	/**
 	 * @var RestParameterParser
 	 */
@@ -41,7 +41,7 @@ class ConfigController extends Controller {
 	 */
 	public function list() {
 		$this->dbCacheService->triggerCheck();
-
+		
 		return new DataResponse([
 			'folder' => $this->service->getUserFolderPath(),
 			'update_interval' => $this->dbCacheService->getSearchIndexUpdateInterval(),
@@ -55,7 +55,7 @@ class ConfigController extends Controller {
 	 */
 	public function config() {
 		$data = $this->restParser->getParameters();
-
+		
 		if (isset($data['folder'])) {
 			$this->service->setUserFolderPath($data['folder']);
 			$this->dbCacheService->updateCache();
@@ -70,10 +70,10 @@ class ConfigController extends Controller {
 		}
 
 		$this->dbCacheService->triggerCheck();
-
+		
 		return new DataResponse('OK', Http::STATUS_OK);
 	}
-
+	
 	/**
 	 * @NoAdminRequired
 	 * @NoCSRFRequired

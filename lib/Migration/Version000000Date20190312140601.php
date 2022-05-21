@@ -8,6 +8,7 @@ use OCP\Migration\SimpleMigrationStep;
 use OCP\Migration\IOutput;
 
 class Version000000Date20190312140601 extends SimpleMigrationStep {
+
 	/**
 	 * @param IOutput $output
 	 * @param Closure $schemaClosure The `\Closure` returns a `ISchemaWrapper`
@@ -30,7 +31,7 @@ class Version000000Date20190312140601 extends SimpleMigrationStep {
 
 			$table->setPrimaryKey(['recipe_id']);
 		}
-
+		
 		if (!$schema->hasTable('cookbook_keywords')) {
 			$table = $schema->createTable('cookbook_keywords');
 			$table->addColumn('recipe_id', 'integer', [
@@ -41,7 +42,7 @@ class Version000000Date20190312140601 extends SimpleMigrationStep {
 				'length' => 64,
 			]);
 		}
-
+		
 		return $schema;
 	}
 }

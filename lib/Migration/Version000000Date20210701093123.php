@@ -15,20 +15,21 @@ use OCP\DB\QueryBuilder\IQueryBuilder;
  * Auto-generated migration step: Please modify to your needs!
  */
 class Version000000Date20210701093123 extends SimpleMigrationStep {
+
 	/**
 	 * @var IDBConnection
 	 */
 	private $db;
-
+	
 	public function __construct(IDBConnection $db) {
 		$this->db = $db;
 	}
-
+	
 	public function preSchemaChange(IOutput $output, \Closure $schemaClosure, array $options) {
 		$this->db->beginTransaction();
 		try {
 			$qb = $this->db->getQueryBuilder();
-
+			
 			// Fetch all rows that are non-unique
 			$qb->selectAlias('n.user_id', 'user')
 				->selectAlias('n.recipe_id', 'recipe')
@@ -36,13 +37,13 @@ class Version000000Date20210701093123 extends SimpleMigrationStep {
 				->groupBy('n.user_id', 'n.recipe_id')
 				->having('COUNT(*) > 1');
 			//echo $qb->getSQL() . "\n";
-
+			
 			$cursor = $qb->execute();
 			$result = $cursor->fetchAll();
-
+			
 			if (sizeof($result) > 0) {
 				// We have to fix the database
-
+				
 				// Drop all redundant rows
 				$qb = $this->db->getQueryBuilder();
 				$qb->delete('cookbook_names')
@@ -50,7 +51,7 @@ class Version000000Date20210701093123 extends SimpleMigrationStep {
 						'user_id = :user',
 						'recipe_id = :recipe'
 						);
-
+				
 				$qb2 = $this->db->getQueryBuilder();
 				$qb2->update('preferences')
 					->set('configvalue', $qb->expr()->literal('1', IQueryBuilder::PARAM_STR))
@@ -61,17 +62,17 @@ class Version000000Date20210701093123 extends SimpleMigrationStep {
 						);
 				$qb2->setParameter('app', 'cookbook');
 				$qb2->setParameter('property', 'last_index_update');
-
+				
 				foreach ($result as $r) {
 					$qb->setParameter('user', $r['user']);
 					$qb->setParameter('recipe', $r['recipe']);
 					$qb->execute();
-
+					
 					$qb2->setParameter('user', $r['user']);
 					$qb2->execute();
 				}
 			}
-
+			
 			// Finish the transaction
 			$this->db->commit();
 		} catch (\Exception $e) {
@@ -80,7 +81,7 @@ class Version000000Date20210701093123 extends SimpleMigrationStep {
 			throw $e;
 		}
 	}
-
+	
 	/**
 	 * @param IOutput $output
 	 * @param Closure $schemaClosure The `\Closure` returns a `ISchemaWrapper`
@@ -92,7 +93,7 @@ class Version000000Date20210701093123 extends SimpleMigrationStep {
 		 * @var ISchemaWrapper $schema
 		 */
 		$schema = $schemaClosure();
-
+		
 		$namesTable = $schema->getTable('cookbook_names');
 		if ($namesTable->hasPrimaryKey()) {
 			$namesTable->dropPrimaryKey();
@@ -103,7 +104,7 @@ class Version000000Date20210701093123 extends SimpleMigrationStep {
 				'user_id'
 			], 'names_recipe_idx');
 		}
-
+		
 		return $schema;
 	}
 }

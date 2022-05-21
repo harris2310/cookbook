@@ -19,6 +19,7 @@ use ReflectionProperty;
  * @covers ::<protected>
  */
 class ConfigControllerTest extends TestCase {
+	
 	/**
 	 * @var ConfigController|MockObject
 	 */

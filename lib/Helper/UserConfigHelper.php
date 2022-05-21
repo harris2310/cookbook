@@ -20,7 +20,7 @@ class UserConfigHelper {
 	 * @var IConfig
 	 */
 	private $config;
-
+	
 	/**
 	 * @var IL10N
 	 */

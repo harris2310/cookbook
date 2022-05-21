@@ -13,6 +13,7 @@ use OCP\Files\NotPermittedException;
  * This class allows to handle the files of the thumbnails
  */
 class ThumbnailFileHelper {
+
 	/**
 	 * @var ImageGenerationHelper
 	 */
@@ -56,7 +57,7 @@ class ThumbnailFileHelper {
 			if ($this->fileHelper->hasImage($recipeFolder)) {
 				$full = $this->fileHelper->getImage($recipeFolder);
 				$file = $recipeFolder->newFile($filename);
-
+				
 				$this->generationHelper->generateThumbnail($full, $type, $file);
 				return $file;
 			} else {
@@ -85,7 +86,7 @@ class ThumbnailFileHelper {
 	 */
 	private function recreateSingleThumbnail(Folder $recipeFolder, int $type): void {
 		$filename = ImageSize::NAME_MAP[$type];
-
+		
 		if ($this->fileHelper->hasImage($recipeFolder)) {
 			$full = $this->fileHelper->getImage($recipeFolder);
 			if ($recipeFolder->nodeExists($filename)) {
@@ -99,7 +100,7 @@ class ThumbnailFileHelper {
 			$this->getThumbnail($recipeFolder, $type);
 		}
 	}
-
+	
 	/**
 	 * Recreate all thumbnails in the recipe.
 	 *
