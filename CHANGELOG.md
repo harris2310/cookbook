@@ -7,6 +7,10 @@
   [#988](https://github.com/nextcloud/cookbook/pull/988) @rakekniven
 - Move "Categories" caption above list of categories
   [#1000](https://github.com/nextcloud/cookbook/pull/1000) @seyfeb
+- Prevent access to guzzle client without explicit dependency
+  [#1011](https://github.com/nextcloud/cookbook/pull/1011) @christianlupus
+- Make PHP code styling more strict
+  [#1011](https://github.com/nextcloud/cookbook/pull/1011) @christianlupus
 
 ### Documentation
 - Add documentation on updates of the API endpoints
